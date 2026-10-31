@@ -1,0 +1,6 @@
+{
+  "name": "Mina -- 3D Creator",
+  "description": "3D Creator portfolio landing page with interactive living portrait, dynamic marquee showcase, and sticky card presentations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
