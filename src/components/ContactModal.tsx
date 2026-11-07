@@ -5,17 +5,34 @@ import { X, Send, CheckCircle2, Sparkles, Mail, MessageSquare, Briefcase } from 
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialService?: string;
 }
 
-export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
+export const ContactModal: React.FC<ContactModalProps> = ({
+  isOpen,
+  onClose,
+  initialService,
+}) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    service: '3D Modeling & Visualization',
+    service: initialService ? '3D Modeling' : '3D Modeling',
     budget: '$5,000 - $10,000',
-    message: '',
+    message: initialService
+      ? `Hi Mina, I was impressed by the ${initialService} project and would love to discuss a similar project...`
+      : '',
   });
+
+  // Update message if initialService changes
+  React.useEffect(() => {
+    if (initialService) {
+      setFormData((prev) => ({
+        ...prev,
+        message: `Hi Mina, I was impressed by the ${initialService} project and would love to collaborate on a similar concept.`,
+      }));
+    }
+  }, [initialService]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
